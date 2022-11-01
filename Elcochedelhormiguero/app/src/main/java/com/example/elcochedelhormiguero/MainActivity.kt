@@ -46,7 +46,7 @@ fun PreviewMessageCard() {
     ElCochedelHormigueroTheme {
         Surface {
             MessageCard(
-                msg = Message("Lexi", "Take a look at Jetpack Compose, it's great!")
+                msg = Message("mysingingmonster", "Take a look at Jetpack Compose, it's great!")
 
             )
         }
