@@ -18,14 +18,21 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -76,12 +83,10 @@ class MainActivity : ComponentActivity() {
                                     .build()
                                 preview.setSurfaceProvider(previewView.surfaceProvider)//para confirmar que el view esta usando nuestro preview
                                 val imageAnalysis = ImageAnalysis.Builder()//analisis sobre como vamos a analizar la imagen
-                                    .setTargetResolution(
-                                        Size(//la resolucion que sea la de nuestro preview
+                                    .setTargetResolution(Size(//la resolucion que sea la de nuestro preview
                                         previewView.width,
                                         previewView.height
-                                    )
-                                    )
+                                    ))
                                     .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)//mantiene el ultimo frame para cuando la funcion no pueda soportar la velocidad de render
                                     .build()
                                 imageAnalysis.setAnalyzer(//con las caracteristicas del analisis definido se realiza dicho analisis
@@ -104,16 +109,73 @@ class MainActivity : ComponentActivity() {
                             },
                             modifier = Modifier.weight(1f)
                         )
-                        Text(//el texto generado en la imagen
-                            text = code,
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.fillMaxWidth()
-                                .padding(32.dp)
+                        HyperLinkText(
+                            fullText = "Hey Click here to know me better",
+                            linkText = listOf("here"),
+                            hyperlinks = listOf(code),
+                            fontSize = MaterialTheme.typography.bodyMedium.fontSize
                         )
+
                     }
                 }
             }
         }
     }
+}
+
+@Composable
+fun HyperLinkText(
+    modifier: Modifier = Modifier,
+    fullText: String,
+    linkText: List<String>,
+    linkTextColor: Color = Color.Blue,
+    linkTextFontWeight: FontWeight = FontWeight.Medium,
+    linkTextDecoration: TextDecoration = TextDecoration.Underline,
+    hyperlinks: List<String>,
+    fontSize: TextUnit = TextUnit.Unspecified
+){
+    val annotatedString = buildAnnotatedString {
+        append(fullText)
+        linkText.forEachIndexed { index, link ->
+            val startIndex = fullText.indexOf(link)
+            val endIndex = startIndex + link.length
+            addStyle(
+                style = SpanStyle(
+                    color = linkTextColor,
+                    fontSize = fontSize,
+                    fontWeight = linkTextFontWeight,
+                    textDecoration = linkTextDecoration
+                ),
+                start = startIndex,
+                end = endIndex
+            )
+            addStringAnnotation(
+                tag = "URL",
+                annotation = hyperlinks[index],
+                start = startIndex,
+                end = endIndex
+            )
+        }
+        addStyle(
+            style = SpanStyle(
+                fontSize = fontSize
+            ),
+            start = 0,
+            end = fullText.length
+        )
+    }
+
+    val uriHandler = LocalUriHandler.current
+
+    ClickableText(
+        modifier = modifier,
+        text = annotatedString,
+        onClick = {
+            annotatedString
+                .getStringAnnotations("URL", it, it)
+                .firstOrNull()?.let { stringAnnotation ->
+                    uriHandler.openUri(stringAnnotation.item)
+                }
+        }
+    )
 }
