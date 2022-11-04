@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
+            var puse = 1
             Material3AppTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -27,20 +27,18 @@ class MainActivity : ComponentActivity() {
                 ) {
                     Scaffold(
                         floatingActionButton = {
-                            FloatingActionButton(onClick = {
-                                this.setContent()
-                                {Text(text = "polla")
+                                FloatingActionButton(onClick = {
+                                 puse=puse+1
+                                }) {
+                                    Icon(
+                                        imageVector = Icons.Default.Add,
+                                        contentDescription = null,
+                                        tint = MaterialTheme.colorScheme.onPrimaryContainer
+                                    )
                                 }
 
-                            }) {
+                            },
 
-                                Icon(
-                                    imageVector = Icons.Default.Add,
-                                    contentDescription = null,
-                                    tint = MaterialTheme.colorScheme.onPrimaryContainer
-                                )
-                            }
-                        },
                         topBar = {
                             SmallTopAppBar(
                                 title = {
@@ -52,9 +50,11 @@ class MainActivity : ComponentActivity() {
                                 )
                             )
                         }
-                    ) { values ->
+                    )
+
+                    { values ->
                         LazyColumn(contentPadding = values) {
-                            items(20) {
+                            items(puse) {
                                 ImageCard(
                                     title = "Bacon ipsum",
                                     description = "Bacon ipsum dolor amet pork shankle beef andouille ball tip. Meatball corned beef swine, strip steak bacon jerky doner tongue biltong pork loin drumstick sausage hamburger burgdoggen.",
@@ -64,6 +64,7 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 }
+                Text(puse.toString())
             }
         }
     }
