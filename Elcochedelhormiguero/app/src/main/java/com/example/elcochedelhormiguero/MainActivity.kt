@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.elcochedelhormiguero.ui.theme.Material3AppTheme
@@ -25,7 +26,9 @@ class MainActivity : ComponentActivity() {
                 ) {
                     Scaffold(
                         floatingActionButton = {
-                            FloatingActionButton(onClick = {}) {
+                            FloatingActionButton(onClick = {
+                                //funcion para crear una carta
+                            }) {
                                 Icon(
                                     imageVector = Icons.Default.Add,
                                     contentDescription = null,
