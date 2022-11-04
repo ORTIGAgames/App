@@ -9,7 +9,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.elcochedelhormiguero.ui.theme.Material3AppTheme
@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
+            var flag = false
             Material3AppTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -28,12 +28,8 @@ class MainActivity : ComponentActivity() {
                     Scaffold(
                         floatingActionButton = {
                             FloatingActionButton(onClick = {
-                                this.setContent()
-                                {Text(text = "polla")
-                                }
-
+                                flag = true;
                             }) {
-
                                 Icon(
                                     imageVector = Icons.Default.Add,
                                     contentDescription = null,
@@ -54,7 +50,7 @@ class MainActivity : ComponentActivity() {
                         }
                     ) { values ->
                         LazyColumn(contentPadding = values) {
-                            items(20) {
+                            items(1) {
                                 ImageCard(
                                     title = "Bacon ipsum",
                                     description = "Bacon ipsum dolor amet pork shankle beef andouille ball tip. Meatball corned beef swine, strip steak bacon jerky doner tongue biltong pork loin drumstick sausage hamburger burgdoggen.",
@@ -64,8 +60,15 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 }
+                if(flag.equals(true)){
+                    flag = false
+                    ImageCard( title = "Bacon ipsum",
+                        description = "Bacon ipsum dolor amet pork shankle beef andouille ball tip. Meatball corned beef swine, strip steak bacon jerky doner tongue biltong pork loin drumstick sausage hamburger burgdoggen.",
+                        modifier = Modifier.padding(16.dp))
+                }
             }
         }
     }
 }
+
 
