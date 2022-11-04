@@ -109,13 +109,17 @@ class MainActivity : ComponentActivity() {
                             },
                             modifier = Modifier.weight(1f)
                         )
-                        HyperLinkText(
-                            fullText = "Hey Click here to know me better",
-                            linkText = listOf("here"),
-                            hyperlinks = listOf(code),
-                            fontSize = MaterialTheme.typography.bodyMedium.fontSize
-                        )
-
+                        if(code != ""){
+                            HyperLinkText(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(32.dp),
+                                fullText = "Hey Click here to know me better",
+                                linkText = listOf("here"),
+                                hyperlinks = listOf(code),
+                                fontSize = MaterialTheme.typography.bodyMedium.fontSize
+                            )
+                        }
                     }
                 }
             }
