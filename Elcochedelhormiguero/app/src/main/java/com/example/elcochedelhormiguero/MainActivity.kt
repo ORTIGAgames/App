@@ -13,12 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.elcochedelhormiguero.ui.theme.Material3AppTheme
 
-@ExperimentalMaterial3Api
+
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Material3AppTheme {
+            Navigation()
+            /*Material3AppTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -56,7 +58,7 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 }
-            }
+            }*/
         }
     }
 }

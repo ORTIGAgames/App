@@ -24,6 +24,7 @@ fun ImageCard(
     description: String,
     modifier: Modifier = Modifier
 ) {
+
     Card(
         modifier = modifier,
         colors = CardDefaults.cardColors(
@@ -32,6 +33,7 @@ fun ImageCard(
         shape = MaterialTheme.shapes.large
     ) {
         Image(
+            //Imagen de la empresa
             painter = rememberAsyncImagePainter(
                 model = "https://picsum.photos/seed/${Random.nextInt()}/300/200"
             ),
@@ -44,19 +46,24 @@ fun ImageCard(
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
+
             Text(
+                //Nombre de la empresa
+
                 text = title,
                 style = MaterialTheme.typography.titleLarge
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(6.dp))
             Text(
+                //Descripción de la empresa
                 text = description,
                 style = MaterialTheme.typography.bodyMedium
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(6.dp))
             FlowRow(
+                //Redes sociales y links
                 modifier = Modifier.fillMaxWidth(),
-                mainAxisSpacing = 8.dp,
+                mainAxisSpacing = 6.dp,
                 mainAxisSize = SizeMode.Wrap
             ) {
                 AssistChip(
