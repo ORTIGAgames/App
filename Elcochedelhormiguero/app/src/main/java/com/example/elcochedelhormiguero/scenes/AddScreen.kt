@@ -10,18 +10,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.elcochedelhormiguero.Screen
+import com.example.elcochedelhormiguero.*
 
 @Composable
 fun AddScreen(navController: NavController){
     var text by remember{
         mutableStateOf("")
     }
+
     Column(
         verticalArrangement= Arrangement.Center,
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 50.dp)
     ){
+        QrCodeScanner()
         Text("Esto es el lector QR")
         Spacer(modifier= Modifier.height(8.dp))
         TextField(
@@ -42,5 +45,6 @@ fun AddScreen(navController: NavController){
         ){
             Text(text="Add new one")
         }
+
     }
 }

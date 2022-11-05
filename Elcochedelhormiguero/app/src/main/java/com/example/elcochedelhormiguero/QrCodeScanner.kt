@@ -120,6 +120,7 @@ fun QrCodeScanner() {
             }
         }
     }
+    return
 }
 
 @Composable
