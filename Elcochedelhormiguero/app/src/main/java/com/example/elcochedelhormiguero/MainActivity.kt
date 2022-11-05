@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Material3AppTheme {
-                Qr(BarCodeQr(), "https://youtu.be/UTmBnX_WSSo")
+                Qr(BarCodeQr(), "https://www.youtube.com/watch?v=TCoZoL2RFOU")
             }
         }
     }

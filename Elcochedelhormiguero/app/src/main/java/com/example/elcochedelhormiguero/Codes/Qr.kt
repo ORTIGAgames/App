@@ -17,8 +17,8 @@ fun Qr(
 ) {
     Surface() {
         Column(modifier = Modifier.fillMaxSize()) {
-            if (bar.isValueValid(value)) {
-                Barcode(
+            if (bar.isValueValid(value)) {//generador del codigo Qr
+                Barcode(//llamada a la funcion que crea el codigo
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
                         .width(300.dp)
@@ -26,10 +26,10 @@ fun Qr(
                     Bar = bar,
                     value = value
                 )
-                Text(
+                Text(//texto de debajo
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center,
-                    text = value
+                    text = "Enlace checkeable"
                 )
             }
         }
