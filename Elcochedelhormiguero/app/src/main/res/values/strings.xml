@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">El cochedel hormiguero</string>
+    <string name="hyperlink"><a href="https://www.google.com/">Tap here to open content</a></string>
 </resources>
