@@ -18,21 +18,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import com.example.elcochedelhormiguero.Codes.BarCodeQr
 
-/**
- * Barcode asynchronously creates a barcode bitmap in the background and then displays
- * the barcode via an Image composable. A progress indicator shows, optionally, until
- * the barcode value has been encoded to a bitmap.
- *
- * Note: if the barcode is not a valid format, the spinner will continue forever.
- *
- * @param modifier the modifier to be applied to the layout
- * @param showProgress true will show the progress indicator. Defaults to true.
- * @param resolutionFactor multiplied by 128 to get the resolution, in px, for the bitmap
- * @param type the type of barcode to render
- * @param value the value of the barcode to show
- */
 @Composable
 fun Barcode(
     modifier: Modifier = Modifier,
@@ -44,9 +30,7 @@ fun Barcode(
     val barcodeBitmap = remember { mutableStateOf<ImageBitmap?>(null) }
     val scope = rememberCoroutineScope()
 
-    // The launched effect will run every time the value changes. So, if the barcode changes,
-    // the coroutine to get the bitmap will be started.
-    LaunchedEffect(value) {
+    LaunchedEffect(value) {//siempre que los valores cambios launcheffected se ejecutara (cuando cambie el codigo para generar el bitmap nuevo)
         scope.launch {
             withContext(Dispatchers.Default) {
                 barcodeBitmap.value = try {
@@ -63,10 +47,9 @@ fun Barcode(
         }
     }
 
-    // Contain the barcode in a box that matches the provided dimensions
+    // Box xontiene al codigo ene unas dimensiones especificas
     Box(modifier = modifier) {
-        // If the barcode is not null, display it. If it is null, then the code hasn't
-        // completed the draw in the background so show a progress spinner in place.
+        //si hay codigo disponible para enseñar lo muestra si no el codigo no ha sido generado entero y muestra un circulo cargando en su lugar
         barcodeBitmap.value?.let { barcode ->
             Image(
                 modifier = Modifier.fillMaxSize(),
@@ -85,21 +68,7 @@ fun Barcode(
     }
 }
 
-/**
- * Barcode asynchronously creates a barcode bitmap in the background and then displays
- * the barcode via an Image composable. A progress indicator shows, optionally, until
- * the barcode value has been encoded to a bitmap.
- *
- * Note: if the barcode is not a valid format, the spinner will continue forever.
- *
- * @param modifier the modifier to be applied to the layout
- * @param width the width desired for the barcode
- * @param height the height desired for the barcode
- * @param showProgress true will show the progress indicator. Defaults to true.
- * @param type the type of barcode to render
- * @param value the value of the barcode to show
- */
-@Deprecated("Please set desired height and width on the modifier")
+@Deprecated("Please set desired height and width on the modifier")//para poner el tamaño deseado de la caja
 @Composable
 fun Barcode(
     modifier: Modifier = Modifier,
