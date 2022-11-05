@@ -2,7 +2,9 @@ package com.example.elcochedelhormiguero
 
 sealed class Screen(val route:String) {
     object MainScreen : Screen("main_screen")
-    object DetailScreen: Screen("detail_screen")
+    object YourCardScreen: Screen("your_card_screen")
+    object ColectionScreen: Screen("colection_screen")
+    object AddScreen: Screen("add_screen")
 
     fun withArgs(vararg args:String):String{
         return buildString {
