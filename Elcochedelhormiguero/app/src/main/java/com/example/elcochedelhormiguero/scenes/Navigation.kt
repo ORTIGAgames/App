@@ -1,5 +1,5 @@
 package com.example.elcochedelhormiguero
-
+//El navArguments no se como funciona y todo da error me quiero morir :D
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.compose.rememberNavController
@@ -27,7 +27,7 @@ fun Navigation(){
             AddScreen(navController = navController)
         }
         composable(
-            route = Screen.ColectionScreen.route + "?name={name}",
+            route = Screen.ColectionScreen.route + "?name={name}" + "?code={code}",
             arguments= listOf(
                 navArgument("name"){
                     type= NavType.StringType
@@ -35,7 +35,7 @@ fun Navigation(){
                 }
             )
         ){entry->
-            ColectionScreen(navController = navController,name = entry.arguments?.getString("name"))
+            ColectionScreen(navController = navController,name = entry.arguments?.getString("name"),code=entry.arguments?.getString("data"))
         }
     }
 }

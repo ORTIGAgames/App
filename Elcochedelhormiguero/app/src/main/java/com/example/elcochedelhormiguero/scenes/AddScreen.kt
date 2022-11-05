@@ -17,6 +17,9 @@ fun AddScreen(navController: NavController){
     var text by remember{
         mutableStateOf("")
     }
+    var code by remember{
+        mutableStateOf("")
+    }
 
     Column(
         verticalArrangement= Arrangement.Center,
@@ -24,7 +27,7 @@ fun AddScreen(navController: NavController){
             .fillMaxWidth()
             .padding(horizontal = 50.dp)
     ){
-        QrCodeScanner()
+
         Text("Esto es el lector QR")
         Spacer(modifier= Modifier.height(8.dp))
         TextField(
@@ -33,12 +36,13 @@ fun AddScreen(navController: NavController){
             modifier= Modifier.fillMaxWidth()
         )
         Spacer(modifier= Modifier.height(8.dp))
+        code = QrCodeScanner()
         Button(
             onClick={
 
                 navController.navigate(
                     //builder.toString()
-                    Screen.ColectionScreen.route+"?name=$text"
+                    Screen.ColectionScreen.route+"?name=$text"+"?code=$code"
                 )
             },
             modifier = Modifier.align(Alignment.End)

@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-
+//Aqui hay que hacer todo lo de que convierta los links en QR
 @Composable
 fun YourCardScreen(navController: NavController){
     Column(

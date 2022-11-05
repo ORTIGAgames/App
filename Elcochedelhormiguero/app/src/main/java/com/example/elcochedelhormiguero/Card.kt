@@ -1,15 +1,17 @@
 package com.example.elcochedelhormiguero
-
+//En assitschip en la funcion de on clik que funcione porque xd no lee el url
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat.startActivity
 import coil.compose.rememberAsyncImagePainter
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.SizeMode
@@ -22,9 +24,9 @@ import kotlin.random.Random
 fun ImageCard(
     title: String,
     description: String,
+    code:String,
     modifier: Modifier = Modifier
 ) {
-
     Card(
         modifier = modifier,
         colors = CardDefaults.cardColors(
@@ -67,22 +69,11 @@ fun ImageCard(
                 mainAxisSize = SizeMode.Wrap
             ) {
                 AssistChip(
-                    onClick = { },
-                    colors = AssistChipDefaults.assistChipColors(
-                        leadingIconContentColor = MaterialTheme.colorScheme.onSurfaceVariant
-                    ),
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Outlined.FavoriteBorder,
-                            contentDescription = null
-                        )
+                    onClick = {
+                        val link = Intent(Intent.ACTION_VIEW,Uri.parse(code))
+
+                        //startActivity(link)
                     },
-                    label = {
-                        Text(text = "Mark as favorite")
-                    }
-                )
-                AssistChip(
-                    onClick = { },
                     colors = AssistChipDefaults.assistChipColors(
                         leadingIconContentColor = MaterialTheme.colorScheme.onSurfaceVariant
                     ),
@@ -93,9 +84,10 @@ fun ImageCard(
                         )
                     },
                     label = {
-                        Text(text = "Share with others")
+                        Text(text = "Link")
                     }
                 )
+
             }
         }
     }

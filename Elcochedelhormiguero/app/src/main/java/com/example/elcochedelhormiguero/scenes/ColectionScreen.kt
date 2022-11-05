@@ -1,5 +1,5 @@
 package com.example.elcochedelhormiguero.scenes
-
+//No estoy seguro si se pasan bien los datos creo que no
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -20,8 +20,8 @@ import com.example.elcochedelhormiguero.ui.theme.Material3AppTheme
 
 @ExperimentalMaterial3Api
 @Composable
-fun ColectionScreen(navController: NavController, name:String?) {
-    if (name != null) {
+fun ColectionScreen(navController: NavController, name:String?, code:String?) {
+    if (name != null ) {
         items++
     }
 
@@ -66,10 +66,10 @@ fun ColectionScreen(navController: NavController, name:String?) {
             ) { values ->
                 LazyColumn(contentPadding = values) {
                     items(items) {
-
                         ImageCard(
-                            title = "Bacon ipsum",
-                            description = "Hello,$name",
+                            title = "$name",
+                            description = "Your QR was saved here",
+                            code="$code",
                             modifier = Modifier.padding(16.dp)
                         )
 

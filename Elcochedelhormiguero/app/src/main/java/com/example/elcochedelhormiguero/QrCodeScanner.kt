@@ -2,25 +2,16 @@ package com.example.elcochedelhormiguero
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.os.Bundle
 import android.util.Size
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.ClickableText
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -34,13 +25,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
-import com.example.elcochedelhormiguero.ui.theme.Material3AppTheme
 
 @Composable
-fun QrCodeScanner() {
+fun QrCodeScanner(): String {
     var code by remember {//estado en compose
         mutableStateOf("")
     }
@@ -67,7 +56,7 @@ fun QrCodeScanner() {
         launcher.launch(Manifest.permission.CAMERA)
     }
     Column(
-        modifier = Modifier.fillMaxSize()//ocupa toda la pantalla
+        modifier = Modifier.height(500.dp)//ocupa toda la pantalla
     ) {
         if(hasCamPermission){
             AndroidView(
@@ -120,7 +109,7 @@ fun QrCodeScanner() {
             }
         }
     }
-    return
+    return code
 }
 
 @Composable
