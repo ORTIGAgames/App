@@ -117,7 +117,7 @@ class MainActivity : ComponentActivity() {
                                 fullText = "Hey Click here to know me better",
                                 linkText = listOf("here"),
                                 hyperlinks = listOf(code),
-                                fontSize = MaterialTheme.typography.bodyMedium.fontSize
+                                fontSize = MaterialTheme.typography.bodyLarge.fontSize
                             )
                         }
                     }
