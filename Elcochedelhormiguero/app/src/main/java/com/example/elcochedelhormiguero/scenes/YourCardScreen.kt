@@ -83,8 +83,9 @@ fun YourCardScreen(navController: NavController, name:String?, link:String?) {
                                 .fillMaxWidth()
                                 .padding(horizontal = 14.dp)
                         )
+                        Qr(bar = BarCodeQr(), value = textos[index])
                         Button(
-                            onClick = { /*Qr(bar = BarCodeQr(), value = textos[index])*/ },
+                            onClick = { },
                             modifier = Modifier
                                 .fillMaxWidth()
 

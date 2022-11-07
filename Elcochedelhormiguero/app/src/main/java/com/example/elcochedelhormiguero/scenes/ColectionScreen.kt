@@ -72,7 +72,6 @@ fun ColectionScreen(navController: NavController, name:String?, code:String?) {
 
             ) { values ->
                 LazyColumn(contentPadding = values) {
-
                     itemsIndexed(nombres) {index, nombre->
                         ImageCard(
                             title = nombre,
