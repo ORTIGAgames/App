@@ -32,7 +32,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 
 @Composable
-fun QrCodeScanner() {
+fun QrCodeScanner():String {
     var code by remember {//estado en compose
         mutableStateOf("")
     }
@@ -112,7 +112,7 @@ fun QrCodeScanner() {
             }
         }
     }
-    return
+    return code
 }
 
 @Composable
