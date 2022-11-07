@@ -31,7 +31,7 @@ fun Barcode(
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(value) {//siempre que los valores cambios launcheffected se ejecutara (cuando cambie el codigo para generar el bitmap nuevo)
-        scope.launch {
+        scope.launch {//lanza corutinas sin detener la principal
             withContext(Dispatchers.Default) {
                 barcodeBitmap.value = try {
                     Bar.getImageBitmap(
@@ -47,7 +47,7 @@ fun Barcode(
         }
     }
 
-    // Box xontiene al codigo ene unas dimensiones especificas
+    // Box contiene al codigo ene unas dimensiones especificas
     Box(modifier = modifier) {
         //si hay codigo disponible para enseñar lo muestra si no el codigo no ha sido generado entero y muestra un circulo cargando en su lugar
         barcodeBitmap.value?.let { barcode ->
@@ -57,7 +57,7 @@ fun Barcode(
                 contentDescription = value
             )
         } ?: run {
-            if (showProgress) {
+            if (showProgress) {//mientras no este el codigo qr en pantalla saldrá un círculo
                 CircularProgressIndicator(
                     modifier = Modifier
                         .fillMaxSize(0.5f)
