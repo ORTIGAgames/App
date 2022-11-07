@@ -1,5 +1,5 @@
 package com.example.elcochedelhormiguero.scenes
-//No estoy seguro si se pasan bien los datos creo que no
+
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -26,7 +26,7 @@ import com.example.elcochedelhormiguero.ui.theme.Material3AppTheme
 @ExperimentalMaterial3Api
 @Composable
 fun ColectionScreen(navController: NavController, name:String?, code:String?) {
-    if (name != null /* && code!=null*/) {
+    if (name != null  && code!=null) {
         items++
         nombres.add("$name")
         enlaces.add("$code")

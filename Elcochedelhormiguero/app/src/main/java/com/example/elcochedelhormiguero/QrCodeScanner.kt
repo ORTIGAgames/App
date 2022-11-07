@@ -56,7 +56,7 @@ fun QrCodeScanner():String {
         launcher.launch(Manifest.permission.CAMERA)
     }
     Column(
-        modifier = Modifier.fillMaxSize()//ocupa toda la pantalla
+        modifier = Modifier.height(500.dp)//ocupa toda la pantalla
     ) {
         if(hasCamPermission){
             AndroidView(

@@ -11,7 +11,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/logo"
-        android:label="Cards"
+        android:label="Qards"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.ElCochedelHormiguero"
@@ -19,7 +19,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="Cards"
+            android:label="Qards"
             android:theme="@style/Theme.ElCochedelHormiguero">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
