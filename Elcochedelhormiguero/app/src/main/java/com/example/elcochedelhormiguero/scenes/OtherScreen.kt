@@ -15,11 +15,11 @@ import com.example.elcochedelhormiguero.ui.theme.Material3AppTheme
 
 
 @Composable
-fun AddScreen(navController: NavController) {
+fun OtherScreen(navController: NavController) {
     var text by remember {
         mutableStateOf("")
     }
-    var code by remember {
+    var link by remember {
         mutableStateOf("")
     }
     Material3AppTheme {
@@ -38,13 +38,13 @@ fun AddScreen(navController: NavController) {
                 SmallTopAppBar(
                     title = {
                         Text(
-                            "Añade un nuevo QR",
+                            "Añade un nuevo enlace",
                         )
 
                     },
                     //modifier = Modifier.fillMaxWidth(),
                     navigationIcon = {
-                        IconButton(onClick = { navController.navigate(Screen.ColectionScreen.route) }) {
+                        IconButton(onClick = { navController.navigate(Screen.YourCardScreen.route) }) {
                             Icon(
                                 imageVector = Icons.Default.ArrowBack,
                                 contentDescription = null,
@@ -54,20 +54,25 @@ fun AddScreen(navController: NavController) {
                     }
                 )
                 Spacer(modifier = Modifier.height(8.dp))
-                Text(text = "Nombre del QR")
+                Text(text = "Nombre del enlace")
                 Spacer(modifier = Modifier.height(8.dp))
                 TextField(
                     value = text,
                     onValueChange = { text = it },
                     modifier = Modifier.fillMaxWidth()
                 )
+                Text(text = "Enlace de la pagina web")
+                Spacer(modifier = Modifier.height(8.dp))
+                TextField(
+                    value = link,
+                    onValueChange = { link = it },
+                    modifier = Modifier.fillMaxWidth()
+                )
 
-                Spacer(modifier = Modifier.height(10.dp))
-                code = QrCodeScanner()
                 Spacer(modifier = Modifier.height(10.dp))
                 Button(
                     onClick = {
-                        navController.navigate(Screen.ColectionScreen.route + "?name=$text" + "?code=$code")
+                        navController.navigate(Screen.YourCardScreen.route + "?name=$text" + "?link=$link")
                     },
                     modifier = Modifier.align(Alignment.End)
                 ) {

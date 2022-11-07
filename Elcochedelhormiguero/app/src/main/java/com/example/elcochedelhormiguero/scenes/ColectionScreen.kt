@@ -1,9 +1,10 @@
 package com.example.elcochedelhormiguero.scenes
-
+//No estoy seguro si se pasan bien los datos creo que no
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
@@ -11,18 +12,24 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.elcochedelhormiguero.ImageCard
 import com.example.elcochedelhormiguero.Screen
 import com.example.elcochedelhormiguero.items
+import com.example.elcochedelhormiguero.nombres
+import com.example.elcochedelhormiguero.enlaces
 import com.example.elcochedelhormiguero.ui.theme.Material3AppTheme
+
 
 @ExperimentalMaterial3Api
 @Composable
-fun ColectionScreen(navController: NavController, name:String?) {
-    if (name != null) {
+fun ColectionScreen(navController: NavController, name:String?, code:String?) {
+    if (name != null /* && code!=null*/) {
         items++
+        nombres.add("$name")
+        enlaces.add("$code")
     }
 
     Material3AppTheme {
@@ -47,7 +54,7 @@ fun ColectionScreen(navController: NavController, name:String?) {
                     SmallTopAppBar(
                         title = {
                             Text(
-                                "Your Colection",
+                                "Tu colección",
                             )
 
                         },
@@ -65,17 +72,20 @@ fun ColectionScreen(navController: NavController, name:String?) {
 
             ) { values ->
                 LazyColumn(contentPadding = values) {
-                    items(items) {
 
+                    itemsIndexed(nombres) {index, nombre->
                         ImageCard(
-                            title = "Bacon ipsum",
-                            description = "Hello,$name",
+                            title = nombre,
+                            description = "Pulsa el botón para abrir la pagina web ",
+                            code=enlaces[index],
+                            context=  LocalContext.current,
                             modifier = Modifier.padding(16.dp)
                         )
 
                     }
 
                 }
+
                 if (items == 0) {
                     Box(
                         contentAlignment = Alignment.Center,
