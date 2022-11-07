@@ -105,7 +105,9 @@ fun QrCodeScanner(): String {
                     linkText = listOf("here"),
                     hyperlinks = listOf(code),
                     fontSize = MaterialTheme.typography.bodyLarge.fontSize
+
                 )
+
             }
         }
     }

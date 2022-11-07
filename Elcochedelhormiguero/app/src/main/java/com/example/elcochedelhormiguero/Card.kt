@@ -1,5 +1,6 @@
 package com.example.elcochedelhormiguero
 //En assitschip en la funcion de on clik que funcione porque xd no lee el url
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.Image
@@ -10,6 +11,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat.startActivity
 import coil.compose.rememberAsyncImagePainter
@@ -20,11 +22,11 @@ import kotlin.random.Random
 @ExperimentalMaterial3Api
 
 @Composable
-
 fun ImageCard(
     title: String,
     description: String,
     code:String,
+    context:Context,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -70,9 +72,8 @@ fun ImageCard(
             ) {
                 AssistChip(
                     onClick = {
-                        val link = Intent(Intent.ACTION_VIEW,Uri.parse(code))
-
-                        //startActivity(link)
+                        val link =  Intent(Intent.ACTION_VIEW,Uri.parse(code))
+                        startActivity(context,link,null)
                     },
                     colors = AssistChipDefaults.assistChipColors(
                         leadingIconContentColor = MaterialTheme.colorScheme.onSurfaceVariant
